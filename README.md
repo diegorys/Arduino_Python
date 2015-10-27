@@ -1,2 +1,7 @@
-# pyduino
-Package in Python to detect the Arduino Boards connected by serial port.
+# Arduino Python
+
+Package for detects the Arduino Boards connected.
+
+This package requires install Serial for Python.
+
+pip install pyserial
