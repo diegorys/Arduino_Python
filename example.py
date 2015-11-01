@@ -1,4 +1,5 @@
 # -- coding: utf-8 --
+#__requires__ = ['arduino']
 
 """
  Example of use.
@@ -7,7 +8,7 @@
  v0.1 Oct 2015    - Created
 """
 
-from boardmanager import BoardManager
+from arduino.boardmanager import BoardManager
 
 boardManager = BoardManager()
 boards = boardManager.search()
