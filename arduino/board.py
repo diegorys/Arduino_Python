@@ -4,7 +4,7 @@
  Represents a board.
 
  Diego de los Reyes Rodríguez.
- v0.1 Oct 2015	- Created.
+ v0.1 Oct 2015	- Created. R
  v0.2 Dec 2016	- Send and receive message.
 """
 
@@ -33,9 +33,6 @@ class Board:
 			return False
 
 
-	def toString(self):
-		return self.port+": "+self.description
-
 	def sendMessage(self, message):
 		self.device.write(message)
 
@@ -51,3 +48,6 @@ class Board:
 			attempts -= 1
 		return result
 
+
+	def toString(self):
+		return self.port+": "+self.description

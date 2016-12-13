@@ -21,11 +21,23 @@ print len(boards),"boards found"
 for board in boards:
 	print board.toString()
 	message = ""
-	while message != "exit":
+	while message != "bye":
 		message = raw_input("Send message: ")
-		board.sendMessage(message)
-		result = board.receiveMessage()
-		if result != "":
-			print "Result:",result
+		receive = False
+		if message == "on":
+			board.sendMessage("101")
+			receive = True
+		elif message == "off":
+			board.sendMessage("100")
+			receive = True
+		elif message == "bye":
+			print "Bye!"
 		else:
-			print "Board is not responding"
+			print "Unknown message"
+
+		if receive:
+			result = board.receiveMessage()
+			if result != "":
+				print "Result:",result
+			else:
+				print "Board is not responding"
