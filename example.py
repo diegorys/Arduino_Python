@@ -13,13 +13,13 @@ from arduino.boardmanager import BoardManager
 
 boardManager = BoardManager()
 
-print "Searching for boards..."
+print("Searching for boards...")
 boards = boardManager.search()
 
-print len(boards),"boards found"
+print(len(boards),"boards found")
 
 for board in boards:
-	print board.toString()
+	print(board.toString())
 	message = ""
 	while message != "bye":
 		message = raw_input("Send message: ")
@@ -31,13 +31,13 @@ for board in boards:
 			board.sendMessage("100")
 			receive = True
 		elif message == "bye":
-			print "Bye!"
+			print("Bye!")
 		else:
-			print "Unknown message"
+			print("Unknown message")
 
 		if receive:
 			result = board.receiveMessage()
 			if result != "":
-				print "Result:",result
+				print("Result:",result)
 			else:
-				print "Board is not responding"
+				print("Board is not responding")

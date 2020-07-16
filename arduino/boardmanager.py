@@ -7,7 +7,7 @@
  v0.1 Oct 2015	- Created.
 """
 
-from board import Board
+from arduino.board import Board
 import serial.tools.list_ports
 
 class BoardManager:

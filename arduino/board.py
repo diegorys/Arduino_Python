@@ -12,42 +12,42 @@ import time
 import serial
 from serial.serialutil import SerialException
 
+
 class Board:
 
-	port = ''
-	description = ''
-	serialNumber = ''
-	device = ''
+    port = ''
+    description = ''
+    serialNumber = ''
+    device = ''
 
-	def __init__(self, port, description, serialNumber):
-		self.port = port
-		self.description = description
-		self.serialNumber = serialNumber
+    def __init__(self, port, description, serialNumber):
+        self.port = port
+        self.description = description
+        self.serialNumber = serialNumber
 
-	def isAvailable(self):
-		try:
-			self.device = serial.Serial(self.port, 9600)
-			return True
-		except SerialException:
-			print "\tBOARD IN ",self.port,"IS IN USE BY OTHER PROGRAM OR YOU HAVE NOT PERMISSIONS"
-			return False
+    def isAvailable(self):
+        try:
+            self.device = serial.Serial(self.port, 9600)
+            return True
+        except SerialException:
+            print("\tBOARD IN ", self.port,
+                  "IS IN USE BY OTHER PROGRAM OR YOU HAVE NOT PERMISSIONS")
+            return False
 
+    def sendMessage(self, message):
+        self.device.write(message)
 
-	def sendMessage(self, message):
-		self.device.write(message)
+    def receiveMessage(self):
+        attempts = 5
+        result = ""
+        while (result == "" and attempts > 0):
+            time.sleep(1)
+            while self.device.inWaiting() > 0:
+                message = self.device.readline()
+                if message:
+                    result = message
+            attempts -= 1
+        return result
 
-	def receiveMessage(self):
-		attempts = 5
-		result = ""
-		while (result == "" and attempts > 0):
-			time.sleep(1)
-			while self.device.inWaiting() > 0:
-				message = self.device.readline()
-				if message:
-					result = message
-			attempts -= 1
-		return result
-
-
-	def toString(self):
-		return self.port+": "+self.description
+    def toString(self):
+        return self.port+": "+self.description
